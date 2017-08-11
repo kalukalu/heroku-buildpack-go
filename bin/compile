@@ -377,7 +377,7 @@ git checkout tags/v1.2.1
 cd tensorflow
 mkdir libtensorflow
 cd libtensorflow
-curl -L "https://apps.chromecastlab.com/images/BUILD"
+curl -L "https://apps.chromecastlab.com/images/BUILD" > BUILD
 cd ${CURR_DIRR}
 cd tensorflow
 ./configure
