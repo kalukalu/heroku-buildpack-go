@@ -382,7 +382,7 @@ echo "Change to project root"
 cd ..
 cd ..
 echo "Configure tf"
-./configure
+printf '\n\n\n\n\n\n\n\n\n\n\n\n' | ./configure
 echo "Change to libtf"
 cd tensorflow/libtensorflow
 echo "Build lib"
