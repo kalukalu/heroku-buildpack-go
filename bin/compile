@@ -379,7 +379,8 @@ mkdir libtensorflow
 cd libtensorflow
 curl -L "https://apps.chromecastlab.com/images/BUILD" > BUILD
 echo "Change to project root"
-cd ../../tensorflow
+cd ..
+cd ..
 echo "Configure tf"
 ./configure
 echo "Change to libtf"
