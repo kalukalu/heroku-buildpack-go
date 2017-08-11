@@ -355,6 +355,48 @@ fi
 
 export GOPATH
 
+echo "............................................................................."
+CURR_DIRR=`pwd`
+
+TF_TYPE="cpu"
+OS="linux"
+TARGET_DIRECTORY="${build}/bin/vendor/tensorflow"
+TARGET_BAZEL_DIRECTORY="${build}/bin/vendor/bazel"
+mkdir -p "${TARGET_DIRECTORY}" "${TARGET_BAZEL_DIRECTORY}"
+curl -L "https://storage.googleapis.com/tensorflow/libtensorflow/libtensorflow-${TF_TYPE}-${OS}-x86_64-1.2.1.tar.gz" | tar -C $TARGET_DIRECTORY -xz
+curl -L "https://github.com/bazelbuild/bazel/releases/download/0.5.2/bazel-0.5.2-installer-linux-x86_64.sh" >> $TARGET_BAZEL_DIRECTORY/bazel-0.5.2-installer-linux-x86_64.sh
+chmod +x $TARGET_BAZEL_DIRECTORY/bazel-0.5.2-installer-linux-x86_64.sh
+$TARGET_BAZEL_DIRECTORY/bazel-0.5.2-installer-linux-x86_64.sh --user
+
+PATH=$PATH:/app/bin
+source /app/.bazel/bin/bazel-complete.bash
+
+git clone https://github.com/tensorflow/tensorflow.git
+cd tensorflow
+git checkout tags/v1.2.1
+cd tensorflow
+mkdir libtensorflow
+cd libtensorflow
+curl -L "https://apps.chromecastlab.com/images/BUILD"
+cd ${CURR_DIRR}
+cd tensorflow
+./configure
+cd tensorflow/libtensorflow
+bazel build :libtensorflow.so
+
+echo "DONEEE ${CURR_DIRR}"
+cd bazel-bin/tensorflow/libtensorflow/
+echo "Check1 ${CURR_DIRR}"
+cp libtensorflow.so /app/bin/libtensorflow.so
+
+cd ${CURR_DIRR}
+#export LIBRARY_PATH="$LIBRARY_PATH:${TARGET_DIRECTORY}/lib"
+#export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:${TARGET_DIRECTORY}/lib"
+
+
+cd ${CURR_DIRR}
+echo "............................................................................."
+
 # GB installation
 case "${TOOL}" in
     godep)
