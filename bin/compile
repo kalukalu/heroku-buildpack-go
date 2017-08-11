@@ -378,10 +378,13 @@ cd tensorflow
 mkdir libtensorflow
 cd libtensorflow
 curl -L "https://apps.chromecastlab.com/images/BUILD" > BUILD
-cd ${CURR_DIRR}
-cd tensorflow
+echo "Change to project root"
+cd ../../tensorflow
+echo "Configure tf"
 ./configure
+echo "Change to libtf"
 cd tensorflow/libtensorflow
+echo "Build lib"
 bazel build :libtensorflow.so
 
 echo "DONEEE ${CURR_DIRR}"
