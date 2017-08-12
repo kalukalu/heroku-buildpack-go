@@ -355,6 +355,18 @@ fi
 
 export GOPATH
 
+echo "............................................................................."
+CURR_DIRR=`pwd`
+TF_TYPE="cpu"
+OS="linux"
+TARGET_DIRECTORY="${build}/bin/vendor/tensorflow"
+mkdir -p "${TARGET_DIRECTORY}"
+curl -L "https://s3.amazonaws.com/sbx-ml-public-lib/libtensorflow.tar.gz" | tar -C $TARGET_DIRECTORY -xz
+export LIBRARY_PATH="$LIBRARY_PATH:${TARGET_DIRECTORY}/lib"
+export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:${TARGET_DIRECTORY}/lib"
+cd ${CURR_DIRR}
+echo "............................................................................."
+
 # GB installation
 case "${TOOL}" in
     godep)
