@@ -389,6 +389,8 @@ echo "Build lib"
 bazel build :libtensorflow.so
 
 echo "DONEEE ${CURR_DIRR}"
+cd ..
+cd ..
 cd bazel-bin/tensorflow/libtensorflow/
 echo "Check1 ${CURR_DIRR}"
 cp libtensorflow.so /app/bin/libtensorflow.so
