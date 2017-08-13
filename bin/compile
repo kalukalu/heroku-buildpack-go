@@ -353,12 +353,8 @@ if [ -n "${GO_LINKER_SYMBOL}" -a -n "${GO_LINKER_VALUE}" ]; then
     FLAGS=(${FLAGS[@]} -ldflags "-X ${xval}")
 fi
 
-export GOPATH
 
 echo "............................................................................."
-go get github.com/tensorflow/tensorflow/tensorflow/go
-go test github.com/tensorflow/tensorflow/tensorflow/go
-
 CURR_DIRR=`pwd`
 TF_TYPE="cpu"
 OS="linux"
@@ -369,6 +365,8 @@ export LIBRARY_PATH="$LIBRARY_PATH:${TARGET_DIRECTORY}/lib"
 export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:${TARGET_DIRECTORY}/lib"
 cd ${CURR_DIRR}
 echo "............................................................................."
+
+export GOPATH
 
 # GB installation
 case "${TOOL}" in
