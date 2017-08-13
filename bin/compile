@@ -356,6 +356,9 @@ fi
 export GOPATH
 
 echo "............................................................................."
+go get github.com/tensorflow/tensorflow/tensorflow/go
+go test github.com/tensorflow/tensorflow/tensorflow/go
+
 CURR_DIRR=`pwd`
 TF_TYPE="cpu"
 OS="linux"
